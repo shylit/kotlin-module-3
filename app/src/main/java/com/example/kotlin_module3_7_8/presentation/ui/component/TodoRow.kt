@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.kotlin_module3_7_8.domain.model.TodoItem
+import androidx.compose.ui.platform.testTag
 
 @Composable
 fun TodoRow(
@@ -21,11 +22,13 @@ fun TodoRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .testTag("todo_row_${item.id}")
             .clickable { onClick() }
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Checkbox(
+            modifier = Modifier.testTag("todo_checkbox_${item.id}"),
             checked = item.isCompleted,
             onCheckedChange = { onToggle(item.id) }
         )
